@@ -1,0 +1,55 @@
+/* General Styles */
+body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    transition: background-color 0.3s ease-in-out;
+}
+
+/* Sidebar Styles */
+#sidebar-wrapper {
+    transition: margin 0.3s;
+}
+
+#sidebar-wrapper.toggled {
+    margin-left: -250px;
+}
+
+/* Navbar Styles */
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #ffffff;
+    background-color: #343a40;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Card Styles */
+.card {
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    border: none;
+    border-radius: 0.5rem;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer Styles */
+footer {
+    background-color: #343a40;
+    color: #ffffff;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* Dropdown Menu Styles */
+.dropdown-menu {
+    transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.dropdown-menu.show {
+    opacity: 1;
+    max-height: 500px; /* Adjust as needed */
+}
