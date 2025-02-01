@@ -103,10 +103,12 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::get('admin/pengadaan', [PengadaanController::class, 'index'])->name('pengadaan.index');
     Route::get('admin/pengadaan/create', [PengadaanController::class, 'create'])->name('pengadaan.create');
+    Route::get('admin/pengadaan/{id}/depresiasi', [PengadaanController::class, 'showDepresiasi'])->name('pengadaan.depresiasi');
     Route::post('admin/pengadaan', [PengadaanController::class, 'store'])->name('pengadaan.store');
     Route::get('admin/pengadaan/{pengadaan}/edit', [PengadaanController::class, 'edit'])->name('pengadaan.edit');
     Route::put('admin/pengadaan/{pengadaan}', [PengadaanController::class, 'update'])->name('pengadaan.update');
     Route::delete('admin/pengadaan/{pengadaan}', [PengadaanController::class, 'destroy'])->name('pengadaan.destroy');
+
 });
 
 // Routes untuk Depresiasi

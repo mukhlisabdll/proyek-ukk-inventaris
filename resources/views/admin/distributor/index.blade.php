@@ -28,8 +28,9 @@
     <div class="alert alert-success">{{ session('success') }}</div>
     @endif
 
+    <div class="table-responsive">
     <table class="table table-bordered">
-        <thead>
+        <thead class="table-secondary">
             <tr>
                 <th>No</th>
                 <th>Nama Distributor</th>
@@ -61,5 +62,6 @@
             @endforeach
         </tbody>
     </table>
+    </div>
 </div>
 @endsection

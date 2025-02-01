@@ -26,7 +26,7 @@
 
     <div class="table-responsive">
     <table class="table table-bordered">
-        <thead>
+        <thead class="table-secondary">
             <tr>
                 <th>No</th>
                 <th>Kode Pengadaan</th>
@@ -40,8 +40,10 @@
                 <th>No Seri Barang</th>
                 <th>Tahun Produksi</th>
                 <th>Tanggal Pengadaan</th>
+                <th>Jumlah Barang</th>
                 <th>Harga Barang</th>
                 <th>Nilai Barang</th>
+                <th>Depresiasi Barang</th>
                 <th>Flag Barang</th>
                 <th>Keterangan</th>
             </tr>
@@ -52,7 +54,13 @@
                     <td>{{ $index + 1 }}</td>
                     <td>{{ $item->kode_pengadaan }}</td>
                     <td>{{ $item->masterBarang->nama_barang }}</td>
-                    <td>{{ $item->depresiasi->lama_depresiasi }}</td>
+                    <td>
+                        @if ($item->depresiasi)
+                            {{ $item->depresiasi->lama_depresiasi }} bulan
+                        @else
+                            -
+                        @endif
+                    </td>
                     <td>{{ $item->merk->merk }}</td>
                     <td>{{ $item->satuan->satuan }}</td>
                     <td>{{ $item->subKategoriAsset->sub_kategori_asset }}</td>
@@ -61,8 +69,16 @@
                     <td>{{ $item->no_seri_barang }}</td>
                     <td>{{ $item->tahun_produksi }}</td>
                     <td>{{ $item->tgl_pengadaan }}</td>
-                    <td>{{ number_format($item->harga_barang, 0, ',', '.') }}</td>
-                    <td>{{ number_format($item->nilai_barang, 0, ',', '.') }}</td>
+                    <td>{{ $item->jumlah_barang }}</td>
+                    <td>Rp{{ number_format($item->harga_barang, 0, ',', '.') }}</td>
+                    <td>Rp{{ number_format($item->nilai_barang, 0, ',', '.') }}</td>
+                    <td>
+                        @if ($item->depresiasi_barang)
+                            Rp{{ number_format($item->depresiasi_barang, 0, ',', '.') }} / bulan
+                        @else
+                            Tidak ada depresiasi
+                        @endif
+                    </td>
                     <td>{{ $item->fb == '1' ? 'Aktif' : 'Tidak Aktif' }}</td>
                     <td>{{ $item->keterangan }}</td>
                 </tr>

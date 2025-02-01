@@ -23,8 +23,9 @@
         </div>
     </form>
 
+    <div class="table-responsive">
     <table class="table table-bordered">
-        <thead>
+        <thead class="table-secondary">
             <tr>
                 <th>No</th>
                 <th>Lokasi</th>
@@ -45,5 +46,6 @@
             @endforeach
         </tbody>
     </table>
+</div>
 </div>
 @endsection

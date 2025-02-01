@@ -23,7 +23,7 @@
             z-index: -1;
         }
         .main-content {
-            background-color: rgba(255, 255, 255, 0.6); /* More transparent */
+            background-color: rgba(255, 255, 255, 0.1); /* More transparent */
             border-radius: 0.5rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -31,6 +31,8 @@
             max-width: 500px;
             margin-left: auto;
             margin-right: auto;
+            color: #ffffff; /* Change text color to bright white */
+            
         }
         .btn-primary {
             background-color: #007bff;
@@ -55,11 +57,12 @@
         }
         .feature-item {
             text-align: center;
-            color: #333;
+            color: #ffffff; /* Change text color to bright white */
         }
         .feature-item i {
             font-size: 24px;
             margin-bottom: 5px;
+            color: #ffffff; /* Change icon color to bright white */
         }
         .footer {
             background-color: rgba(0, 0, 0, 0.7);
@@ -87,7 +90,7 @@
     <main class="container mx-auto flex-grow flex items-center justify-center">
         <div class="main-content">
             <h2 class="text-3xl font-bold mb-6 text-center">Selamat Datang di Web Inventaris</h2>
-            <p class="text-gray-700 mb-6 text-center">Aplikasi ini membantu Anda mengelola inventaris barang dengan mudah dan efisien.</p>
+            <p class="text-white mb-6 text-center">Aplikasi ini membantu Anda mengelola inventaris barang dengan mudah dan efisien.</p>
             <div class="features">
                 <div class="feature-item">
                     <i class="fas fa-chart-line"></i>

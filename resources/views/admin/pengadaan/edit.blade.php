@@ -112,8 +112,8 @@
             <input type="number" class="form-control" id="harga_barang" name="harga_barang" value="{{ $pengadaan->harga_barang }}" required>
         </div>
         <div class="mb-3">
-            <label for="nilai_barang" class="form-label">Nilai Barang</label>
-            <input type="number" class="form-control" id="nilai_barang" name="nilai_barang" value="{{ $pengadaan->nilai_barang }}" required>
+            <label for="jumlah_barang" class="form-label">Jumlah Barang</label>
+            <input type="number" class="form-control" id="jumlah_barang" name="jumlah_barang" value="{{ $pengadaan->jumlah_barang }}" required>
         </div>
         <div class="mb-3">
             <label for="fb" class="form-label">Flag Barang</label>

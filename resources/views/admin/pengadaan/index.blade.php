@@ -30,7 +30,7 @@
 
     <div class="table-responsive">
     <table class="table table-bordered">
-        <thead>
+        <thead class="table-secondary">
             <tr>
                 <th>No</th>
                 <th>Kode Pengadaan</th>
@@ -44,8 +44,10 @@
                 <th>No Seri Barang</th>
                 <th>Tahun Produksi</th>
                 <th>Tanggal Pengadaan</th>
+                <th>Jumlah Barang</th>
                 <th>Harga Barang</th>
                 <th>Nilai Barang</th>
+                <th>Depresiasi Barang</th>
                 <th>Flag Barang</th>
                 <th>Keterangan</th>
                 <th>Aksi</th>
@@ -57,7 +59,13 @@
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $pengadaan->kode_pengadaan }}</td>
                     <td>{{ $pengadaan->masterBarang->nama_barang }}</td>
-                    <td>{{ $pengadaan->depresiasi->lama_depresiasi }}</td>
+                    <td>
+                        @if ($pengadaan->depresiasi)
+                            {{ $pengadaan->depresiasi->lama_depresiasi }} bulan
+                        @else
+                            -
+                        @endif
+                    </td>
                     <td>{{ $pengadaan->merk->merk }}</td>
                     <td>{{ $pengadaan->satuan->satuan }}</td>
                     <td>{{ $pengadaan->subKategoriAsset->sub_kategori_asset }}</td>
@@ -66,12 +74,22 @@
                     <td>{{ $pengadaan->no_seri_barang }}</td>
                     <td>{{ $pengadaan->tahun_produksi }}</td>
                     <td>{{ $pengadaan->tgl_pengadaan }}</td>
-                    <td>{{ number_format($pengadaan->harga_barang, 0, ',', '.') }}</td>
-                    <td>{{ number_format($pengadaan->nilai_barang, 0, ',', '.') }}</td>
+                    <td>{{ $pengadaan->jumlah_barang }}</td>
+                    <td>Rp{{ number_format($pengadaan->harga_barang, 0, ',', '.') }}</td>
+                    <td>Rp{{ number_format($pengadaan->nilai_barang, 0, ',', '.') }}</td>
+                    <td>
+                        @if ($pengadaan->depresiasi_barang)
+                            Rp{{ number_format($pengadaan->depresiasi_barang, 0, ',', '.') }} / bulan
+                        @else
+                            Tidak ada depresiasi
+                        @endif
+                    </td>
                     <td>{{ $pengadaan->fb == '1' ? 'Aktif' : 'Tidak Aktif' }}</td>
                     <td>{{ $pengadaan->keterangan }}</td>
+                    <!-- Di dalam index.blade.php -->
                     <td>
                         <a href="{{ route('pengadaan.edit', $pengadaan->id_pengadaan) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{{ route('pengadaan.depresiasi', $pengadaan->id_pengadaan) }}" class="btn btn-info btn-sm">Detail Depresiasi</a>
                         <form action="{{ route('pengadaan.destroy', $pengadaan->id_pengadaan) }}" method="POST" class="d-inline">
                             @csrf
                             @method('DELETE')
@@ -80,7 +98,7 @@
                     </td>
                 </tr>
             @endforeach
-        </tbody>
+        </tbody>        
     </table>
 </div>
 </div>

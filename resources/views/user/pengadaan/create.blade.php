@@ -105,8 +105,16 @@
             <input type="number" class="form-control" id="harga_barang" name="harga_barang" value="{{ old('harga_barang') }}" required>
         </div>
         <div class="mb-3">
+            <label for="depresiasi_barang" class="form-label">Depresiasi Barang</label>
+            <input type="number" class="form-control" id="depresiasi_barang" name="depresiasi_barang" value="{{ old('depresiasi_barang') }}" required>
+        </div>
+        {{-- <div class="mb-3">
             <label for="nilai_barang" class="form-label">Nilai Barang</label>
             <input type="number" class="form-control" id="nilai_barang" name="nilai_barang" value="{{ old('nilai_barang') }}" required>
+        </div> --}}
+        <div class="mb-3">
+            <label for="jumlah_barang" class="form-label">Jumlah Barang</label>
+            <input type="number" class="form-control" id="jumlah_barang" name="jumlah_barang" value="{{ old('jumlah_barang') }}" required>
         </div>
         <div class="mb-3">
             <label for="fb" class="form-label">Flag Barang</label>
