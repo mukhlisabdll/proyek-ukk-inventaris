@@ -40,15 +40,16 @@
                 <th>Satuan</th>
                 <th>Sub Kategori Asset</th>
                 <th>Distributor</th>
-                <th>No Invoice</th>
+                <th>Invoice</th>
                 <th>No Seri Barang</th>
                 <th>Tahun Produksi</th>
                 <th>Tanggal Pengadaan</th>
                 <th>Jumlah Barang</th>
                 <th>Harga Barang</th>
+                <th>Total Harga</th>
                 <th>Nilai Barang</th>
                 <th>Depresiasi Barang</th>
-                <th>Flag Barang</th>
+                <th>Fisik Barang</th>
                 <th>Keterangan</th>
                 <th>Aksi</th>
             </tr>
@@ -70,12 +71,27 @@
                     <td>{{ $pengadaan->satuan->satuan }}</td>
                     <td>{{ $pengadaan->subKategoriAsset->sub_kategori_asset }}</td>
                     <td>{{ $pengadaan->distributor->nama_distributor }}</td>
-                    <td>{{ $pengadaan->no_invoice }}</td>
+                    <td>
+                        @if ($pengadaan->invoices->count() > 0)
+                            <ul>
+                                @foreach ($pengadaan->invoices as $invoice)
+                                    <li>
+                                        No Invoice: {{ $invoice->no_invoice }}, 
+                                        Jumlah: {{ $invoice->jumlah_barang }}, 
+                                        Tanggal: {{ $invoice->tgl_invoice }}
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
+                            Tidak ada invoice.
+                        @endif
+                    </td>
                     <td>{{ $pengadaan->no_seri_barang }}</td>
                     <td>{{ $pengadaan->tahun_produksi }}</td>
                     <td>{{ $pengadaan->tgl_pengadaan }}</td>
                     <td>{{ $pengadaan->jumlah_barang }}</td>
                     <td>Rp{{ number_format($pengadaan->harga_barang, 0, ',', '.') }}</td>
+                    <td>Rp{{ number_format($pengadaan->total_harga, 0, ',', '.') }}</td>
                     <td>Rp{{ number_format($pengadaan->nilai_barang, 0, ',', '.') }}</td>
                     <td>
                         @if ($pengadaan->depresiasi_barang)

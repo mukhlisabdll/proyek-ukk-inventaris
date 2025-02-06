@@ -26,24 +26,6 @@ class DistributorController extends Controller
         return view('admin.distributor.index', compact('distributors'));
     }
 
-    /**
-     * Tampilkan semua data distributor untuk user.
-     */
-    public function userIndex(Request $request)
-    {
-        $search = $request->input('search');
-        if ($search) {
-            $data = Distributor::where('nama_distributor', 'like', "%{$search}%")
-                ->orWhere('alamat', 'like', "%{$search}%")
-                ->orWhere('no_telp', 'like', "%{$search}%")
-                ->orWhere('email', 'like', "%{$search}%")
-                ->get();
-        } else {
-            $data = Distributor::all();
-        }
-
-        return view('user.distributor.index', compact('data'));
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -64,6 +46,17 @@ class DistributorController extends Controller
             'no_telp' => 'required|max:15',
             'email' => 'nullable|email|max:30',
             'keterangan' => 'nullable|max:45',
+        ], messages: [
+            'nama_distributor.required' => 'Nama distributor tidak boleh kosong',
+            'nama_distributor.max' => 'Nama distributor maksimal 50 karakter',
+            'alamat.required' => 'Alamat distributor tidak boleh kosong',
+            'alamat.max' => 'Alamat distributor maksimal 50 karakter',
+            'no_telp.required' => 'No. Telepon distributor tidak boleh kosong',
+            'no_telp.max' => 'No. Telepon distributor maksimal 15 karakter',
+            'email.email' => 'Format email salah',
+            'email.max' => 'Email maksimal 30 karakter',
+            'keterangan.nullable' => 'Keterangan optional',
+            'keterangan.max' => 'Keterangan maksimal 45 karakter',
         ]);
 
         Distributor::create($request->all());
@@ -90,6 +83,17 @@ class DistributorController extends Controller
             'no_telp' => 'required|max:15',
             'email' => 'nullable|email|max:30',
             'keterangan' => 'nullable|max:45',
+        ], messages: [
+            'nama_distributor.required' => 'Nama distributor tidak boleh kosong',
+            'nama_distributor.max' => 'Nama distributor maksimal 50 karakter',
+            'alamat.required' => 'Alamat distributor tidak boleh kosong',
+            'alamat.max' => 'Alamat distributor maksimal 50 karakter',
+            'no_telp.required' => 'No. Telepon distributor tidak boleh kosong',
+            'no_telp.max' => 'No. Telepon distributor maksimal 15 karakter',
+            'email.email' => 'Format email salah',
+            'email.max' => 'Email maksimal 30 karakter',
+            'keterangan.nullable' => 'Keterangan optional',
+            'keterangan.max' => 'Keterangan maksimal 45 karakter',
         ]);
 
         $distributor->update($request->all());

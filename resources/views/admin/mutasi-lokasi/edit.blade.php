@@ -23,6 +23,9 @@
                     <option value="{{ $lok->id_lokasi }}" {{ $mutasiLokasi->id_lokasi == $lok->id_lokasi ? 'selected' : '' }}>{{ $lok->nama_lokasi }}</option>
                 @endforeach
             </select>
+            @error('id_lokasi')
+                <div class="text-danger">{{ $message }}</div>        
+            @enderror
         </div>
         <div class="mb-3">
             <label for="id_pengadaan" class="form-label">Pengadaan</label>
@@ -31,16 +34,25 @@
                     <option value="{{ $peng->id_pengadaan }}" {{ $mutasiLokasi->id_pengadaan == $peng->id_pengadaan ? 'selected' : '' }}>{{ $peng->kode_pengadaan }}</option>
                 @endforeach
             </select>
+            @error('id_pengadaan')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="flag_lokasi" class="form-label">Flag Lokasi</label>
             <input type="text" name="flag_lokasi" id="flag_lokasi" value="{{ $mutasiLokasi->flag_lokasi }}" class="form-control">
+            @error('flag_lokasi')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="flag_pindah" class="form-label">Flag Pindah</label>
             <input type="text" name="flag_pindah" id="flag_pindah" value="{{ $mutasiLokasi->flag_pindah }}" class="form-control">
+            @error('flag_pindah')
+                <div class="text-danger">{{ $message }}</div>
+            @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>
 @endsection

@@ -23,22 +23,6 @@ class MerkController extends Controller
     }
 
     /**
-     * Tampilkan semua data merk untuk user.
-     */
-    public function userIndex(Request $request)
-    {
-        $search = $request->input('search');
-        if ($search) {
-            $data = Merk::where('merk', 'like', "%{$search}%")
-            ->get();
-        } else {
-            $data = Merk::all();
-        }
-
-        return view('user.merk.index', compact('data'));
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create()
@@ -54,6 +38,13 @@ class MerkController extends Controller
         $request->validate([
             'merk' => 'required|max:50|unique:tbl_merk,merk',
             'keterangan' => 'nullable|max:55',
+        ], messages:
+        [
+            'merk.required' => 'Merk wajib diisi.',
+            'merk.max' => 'Merk maksimal 50 karakter.',
+            'merk.unique' => 'Merk sudah digunakan.',
+            'keterangan.nullable' => 'Keterangan optional.',
+            'keterangan.max' => 'Keterangan maksimal 55 karakter.',
         ]);
 
         Merk::create($request->all());
@@ -77,6 +68,12 @@ class MerkController extends Controller
         $request->validate([
             'merk' => 'required|max:50|unique:tbl_merk,merk,' . $merk->id_merk . ',id_merk',
             'keterangan' => 'nullable|max:55',
+        ], messages: [
+            'merk.required' => 'Merk wajib diisi.',
+            'merk.max' => 'Merk maksimal 50 karakter.',
+            'merk.unique' => 'Merk sudah digunakan.',
+            'keterangan.nullable' => 'Keterangan optional.',
+            'keterangan.max' => 'Keterangan maksimal 55 karakter.',
         ]);
 
         $merk->update($request->all());

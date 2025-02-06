@@ -37,6 +37,11 @@ class SatuanController extends Controller
     {
         $request->validate([
             'satuan' => 'required|max:25|unique:tbl_satuan,satuan',
+        ], messages:
+        [
+           'satuan.required' => 'Satuan harus diisi.',
+           'satuan.max' => 'Satuan maksimal 25 karakter.',
+           'satuan.unique' => 'Satuan sudah terdaftar.',
         ]);
 
         Satuan::create($request->all());
@@ -59,8 +64,13 @@ class SatuanController extends Controller
     {
         $request->validate([
             'satuan' => 'required|max:25|unique:tbl_satuan,satuan,' . $satuan->id_satuan . ',id_satuan',
+        ], messages:
+        [
+            'satuan.required' => 'Satuan harus diisi.',
+            'satuan.max' => 'Satuan maksimal 25 karakter.',
+            'satuan.unique' => 'Satuan sudah terdaftar.',
         ]);
-
+        
         $satuan->update($request->all());
 
         return redirect()->route('satuan.index')->with('success', 'Satuan berhasil diperbarui!');
@@ -73,21 +83,5 @@ class SatuanController extends Controller
     {
         $satuan->delete();
         return redirect()->route('satuan.index')->with('success', 'Satuan berhasil dihapus!');
-    }
-
-    /**
-     * Tampilkan semua data satuan untuk user.
-     */
-    public function userIndex(Request $request)
-    {
-        $search = $request->input('search');
-        if ($search) {
-            $data = Satuan::where('satuan', 'like', "%{$search}%")
-            ->get();
-        } else {
-            $data = Satuan::all();
-        }
-
-        return view('user.satuan.index', compact('data'));
     }
 }

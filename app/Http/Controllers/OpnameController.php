@@ -36,6 +36,16 @@ class OpnameController extends Controller
             'tgl_opname' => 'required|date',
             'kondisi_barang' => 'required|string|max:25',
             'keterangan' => 'nullable|string|max:100',
+        ], messages: [
+            'id_pengadaan.required' => 'Pengadaan harus dipilih',
+            'id_pengadaan.exists' => 'Pengadaan tidak ditemukan.',
+            'tgl_opname.required' => 'Tanggal Opname harus diisi.',
+            'tgl_opname.date' => 'Tanggal Opname harus dalam format tanggal.',
+            'kondisi_barang.required' => 'Kondisi Barang harus diisi.',
+            'kondisi_barang.string' => 'Kondisi Barang harus berupa string.',
+            'kondisi_barang.max' => 'Kondisi Barang maksimal 25 karakter.',
+            'keterangan.string' => 'Keterangan harus berupa string.',
+            'keterangan.max' => 'Keterangan maksimal 100 karakter.',
         ]);
 
         Opname::create($request->all());
@@ -55,6 +65,16 @@ class OpnameController extends Controller
             'tgl_opname' => 'required|date',
             'kondisi_barang' => 'required|string|max:25',
             'keterangan' => 'nullable|string|max:100',
+        ], messages: [
+            'id_pengadaan.required' => 'Pengadaan harus dipilih',
+            'id_pengadaan.exists' => 'Pengadaan tidak ditemukan.',
+            'tgl_opname.required' => 'Tanggal Opname harus diisi.',
+            'tgl_opname.date' => 'Tanggal Opname harus dalam format tanggal.',
+            'kondisi_barang.required' => 'Kondisi Barang harus diisi.',
+            'kondisi_barang.string' => 'Kondisi Barang harus berupa string.',
+            'kondisi_barang.max' => 'Kondisi Barang maksimal 25 karakter.',
+            'keterangan.string' => 'Keterangan harus berupa string.',
+            'keterangan.max' => 'Keterangan maksimal 100 karakter.',
         ]);
 
         $opname->update($request->all());
@@ -94,6 +114,16 @@ class OpnameController extends Controller
             'tgl_opname' => 'required|date',
             'kondisi_barang' => 'required|string|max:25',
             'keterangan' => 'nullable|string|max:100',
+        ], messages: [
+            'id_pengadaan.required' => 'Pengadaan harus dipilih',
+            'id_pengadaan.exists' => 'Pengadaan tidak ditemukan.',
+            'tgl_opname.required' => 'Tanggal Opname harus diisi.',
+            'tgl_opname.date' => 'Tanggal Opname harus dalam format tanggal.',
+            'kondisi_barang.required' => 'Kondisi Barang harus diisi.',
+            'kondisi_barang.string' => 'Kondisi Barang harus berupa string.',
+            'kondisi_barang.max' => 'Kondisi Barang maksimal 25 karakter.',
+            'keterangan.string' => 'Keterangan harus berupa string.',
+            'keterangan.max' => 'Keterangan maksimal 100 karakter.',
         ]);
 
         Opname::create($request->all());

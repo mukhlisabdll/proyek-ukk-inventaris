@@ -17,6 +17,9 @@ class SubKategoriAssetController extends Controller
         if ($search) {
             $subKategoriAssets = SubKategoriAsset::where('kode_sub_kategori_asset', 'like', "%{$search}%")
                 ->orWhere('sub_kategori_asset', 'like', "%{$search}%")
+                ->orWhereHas('kategoriAsset', function ($query) use ($search) {
+                    $query->where('kategori_asset', 'like', "%{$search}%");
+                })
                 ->get();
         } else {
             $subKategoriAssets = SubKategoriAsset::with('kategoriAsset')->get();
@@ -43,6 +46,14 @@ class SubKategoriAssetController extends Controller
             'id_kategori_asset' => 'required|exists:tbl_kategori_asset,id_kategori_asset',
             'kode_sub_kategori_asset' => 'required|max:20|unique:tbl_sub_kategori_asset,kode_sub_kategori_asset',
             'sub_kategori_asset' => 'required|max:25',
+        ], messages: [
+            'id_kategori_asset.required' => 'Kategori Asset wajib diisi.',
+            'id_kategori_asset.exists' => 'Kategori Asset tidak ditemukan.',
+            'kode_sub_kategori_asset.required' => 'Kode Sub Kategori Asset wajib diisi.',
+            'kode_sub_kategori_asset.max' => 'Kode Sub Kategori Asset maksimal 20 karakter.',
+            'kode_sub_kategori_asset.unique' => 'Kode Sub Kategori Asset sudah digunakan.',
+            'sub_kategori_asset.required' => 'Sub Kategori Asset wajib diisi.',
+            'sub_kategori_asset.max' => 'Sub Kategori Asset maksimal 25 karakter.',
         ]);
 
         SubKategoriAsset::create($request->all());
@@ -68,6 +79,14 @@ class SubKategoriAssetController extends Controller
             'id_kategori_asset' => 'required|exists:tbl_kategori_asset,id_kategori_asset',
             'kode_sub_kategori_asset' => 'required|max:20|unique:tbl_sub_kategori_asset,kode_sub_kategori_asset,' . $subKategoriAsset->id_sub_kategori_asset . ',id_sub_kategori_asset',
             'sub_kategori_asset' => 'required|max:25',
+        ], messages: [
+            'id_kategori_asset.required' => 'Kategori Asset wajib diisi.',
+            'id_kategori_asset.exists' => 'Kategori Asset tidak ditemukan.',
+            'kode_sub_kategori_asset.required' => 'Kode Sub Kategori Asset wajib diisi.',
+            'kode_sub_kategori_asset.max' => 'Kode Sub Kategori Asset maksimal 20 karakter.',
+            'kode_sub_kategori_asset.unique' => 'Kode Sub Kategori Asset sudah digunakan.',
+            'sub_kategori_asset.required' => 'Sub Kategori Asset wajib diisi.',
+            'sub_kategori_asset.max' => 'Sub Kategori Asset maksimal 25 karakter.',
         ]);
 
         $subKategoriAsset->update($request->all());
@@ -82,22 +101,5 @@ class SubKategoriAssetController extends Controller
     {
         $subKategoriAsset->delete();
         return redirect()->route('sub-kategori-asset.index')->with('success', 'Sub Kategori Asset berhasil dihapus!');
-    }
-
-    /**
-     * Tampilkan semua data sub kategori asset untuk user.
-     */
-    public function userIndex(Request $request)
-    {
-        $search = $request->input('search');
-        if ($search) {
-            $data = SubKategoriAsset::where('kode_sub_kategori_asset', 'like', "%{$search}%")
-            ->orWhere('sub_kategori_asset', 'like', "%{$search}%")
-            ->get();
-        } else {
-            $data = SubKategoriAsset::all();
-        }
-
-        return view('user.sub-kategori-asset.index', compact('data'));
     }
 }

@@ -17,7 +17,7 @@
     <!-- Search Form -->
     <form action="{{ route('kategori-asset.index') }}" method="GET" class="mb-3">
         <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="Cari Kategori..." value="{{ request('search') }}">
+            <input type="text" name="search" class="form-control" placeholder="Cari Kategori Asset..." value="{{ request('search') }}">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">Cari</button>
             </div>

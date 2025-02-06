@@ -11,12 +11,12 @@
 
 @section('content')
 <div class="container mt-4">
-    <h1 class="mb-4">Data Mutasi Lokasi</h1>
+    <h1 class="mb-4">Daftar Mutasi Lokasi</h1>
     <a href="{{ route('mutasi-lokasi.create') }}" class="btn btn-primary mb-3">Tambah</a>
 
     <form action="{{ route('mutasi-lokasi.index') }}" method="GET" class="mb-3">
         <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="Cari Lokasi atau Pengadaan" value="{{ request('search') }}">
+            <input type="text" name="search" class="form-control" placeholder="Cari Mutasi Lokasi...." value="{{ request('search') }}">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">Cari</button>
             </div>

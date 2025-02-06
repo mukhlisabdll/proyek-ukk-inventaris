@@ -20,7 +20,7 @@
 
     <form action="{{ route('hitung-depresiasi.index') }}" method="GET" class="mb-3">
         <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="Cari berdasarkan bulan" value="{{ request('search') }}">
+            <input type="text" name="search" class="form-control" placeholder="Cari Hitung Depresiasi..." value="{{ request('search') }}">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">Cari</button>
             </div>
@@ -41,7 +41,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($depresiasi as $item)
+            @foreach ($hitungDepresiasi as $item)
                 <tr>
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->pengadaan->kode_pengadaan }}</td>
@@ -50,6 +50,7 @@
                     <td>{{ $item->durasi }}</td>
                     <td>Rp {{ number_format($item->nilai_barang, 0, ',', '.') }}</td>
                     <td>
+                        <a href="{{ route('hitung-depresiasi.show', $item->id_hitung_depresiasi) }}" class="btn btn-info btn-sm">Detail</a>
                         <a href="{{ route('hitung-depresiasi.edit', $item->id_hitung_depresiasi) }}" class="btn btn-warning btn-sm">Edit</a>
                         <form action="{{ route('hitung-depresiasi.destroy', $item->id_hitung_depresiasi) }}" method="POST" class="d-inline">
                             @csrf

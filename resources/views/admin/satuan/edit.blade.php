@@ -20,6 +20,9 @@
         <div class="mb-3">
             <label for="satuan" class="form-label">Nama Satuan</label>
             <input type="text" class="form-control" id="satuan" name="satuan" value="{{ $satuan->satuan }}" required>
+            @error('satuan')
+            <div class="form-text text-danger">{{$message}}</div>
+            @enderror
         </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>

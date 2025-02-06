@@ -27,6 +27,7 @@ class Pengadaan extends Model
         'harga_barang',
         'nilai_barang',
         'jumlah_barang',
+        'total_harga',
         'fb',
         'keterangan',
         'depresiasi_barang', // Kolom tambahan
@@ -63,10 +64,10 @@ class Pengadaan extends Model
         return $this->belongsTo(Distributor::class, 'id_distributor');
     }
 
-    // Accessor untuk menghitung nilai_barang secara otomatis
-    public function getNilaiBarangAttribute()
+    // Di dalam model Pengadaan
+    public function invoices()
     {
-        return $this->jumlah_barang * $this->harga_barang;
+        return $this->hasMany(Invoice::class, 'id_pengadaan');
     }
 
     // Di dalam model Pengadaan
@@ -86,7 +87,13 @@ class Pengadaan extends Model
         $nilaiAwal = $this->harga_barang;
 
         for ($i = 1; $i <= $this->depresiasi->lama_depresiasi; $i++) {
-            $nilaiDepresiasi = $nilaiAwal - ($depresiasiPerBulan * $i);
+            if ($i == 1) {
+                // Bulan pertama, nilai tetap sama dengan harga_barang
+                $nilaiDepresiasi = $nilaiAwal;
+            } else {
+                // Mulai bulan kedua, nilai dikurangi sesuai depresiasi per bulan
+                $nilaiDepresiasi = $nilaiAwal - ($depresiasiPerBulan * ($i - 1));
+            }
             $detailDepresiasi[] = [
                 'bulan' => $i,
                 'nilai' => max($nilaiDepresiasi, 0), // Pastikan nilai tidak negatif

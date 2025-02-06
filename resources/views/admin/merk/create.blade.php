@@ -19,10 +19,16 @@
         <div class="mb-3">
             <label for="merk" class="form-label">Nama Merk</label>
             <input type="text" class="form-control" id="merk" name="merk" required>
+            @error('merk')
+            <div class="form-text text-danger">{{$message}}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="keterangan" class="form-label">Keterangan</label>
             <textarea class="form-control" id="keterangan" name="keterangan"></textarea>
+            @error('keterangan')
+            <div class="form-text text-danger">{{$message}}</div>
+            @enderror
         </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>

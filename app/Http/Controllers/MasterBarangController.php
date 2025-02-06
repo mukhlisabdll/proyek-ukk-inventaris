@@ -24,35 +24,7 @@ class MasterBarangController extends Controller
 
         return view('admin.master-barang.index', compact('masterBarangs'));
     }
-
-    /**
-     * Tampilkan semua data master barang untuk user.
-     */
-    public function userIndex(Request $request)
-    {
-        $search = $request->input('search');
-        if ($search) {
-            $data = MasterBarang::where('kode_barang', 'like', "%{$search}%")
-                ->orWhere('nama_barang', 'like', "%{$search}%")
-                ->orWhere('spesifikasi_teknis', 'like', "%{$search}%")
-                ->get();
-        } else {
-            $data = MasterBarang::all();
-        }
-
-        return view('user.master-barang.index', compact('data'));
-    }
-
-    /**
-     * Tampilkan form tambah master barang untuk user.
-     */
-
-    /**
-     * Simpan data master barang baru untuk user.
-     */
-    /**
-     * Show the form for creating a new resource.
-     */
+    
     public function create()
     {
         return view('admin.master-barang.create');
@@ -67,6 +39,14 @@ class MasterBarangController extends Controller
             'kode_barang' => 'required|max:20|unique:tbl_master_barang,kode_barang',
             'nama_barang' => 'required|max:100',
             'spesifikasi_teknis' => 'required|max:100',
+        ],  messages: [
+            'kode_barang.required' => 'Kode Barang wajib diisi.',
+            'kode_barang.max' => 'Kode Barang maksimal 20 karakter.',
+            'kode_barang.unique' => 'Kode Barang sudah digunakan.',
+            'nama_barang.required' => 'Nama Barang wajib diisi.',
+            'nama_barang.max' => 'Nama Barang maksimal 100 karakter.',
+            'spesifikasi_teknis.required' => 'Spesifikasi Teknis wajib diisi.',
+            'spesifikasi_teknis.max' => 'Spesifikasi Teknis maksimal 100 karakter.',
         ]);
 
         MasterBarang::create($request->all());
@@ -91,6 +71,14 @@ class MasterBarangController extends Controller
             'kode_barang' => 'required|max:20|unique:tbl_master_barang,kode_barang,' . $masterBarang->id_master_barang . ',id_master_barang',
             'nama_barang' => 'required|max:100',
             'spesifikasi_teknis' => 'required|max:100',
+        ], messages: [
+            'kode_barang.required' => 'Kode Barang wajib diisi.',
+            'kode_barang.max' => 'Kode Barang maksimal 20 karakter.',
+            'kode_barang.unique' => 'Kode Barang sudah digunakan.',
+            'nama_barang.required' => 'Nama Barang wajib diisi.',
+            'nama_barang.max' => 'Nama Barang maksimal 100 karakter.',
+            'spesifikasi_teknis.required' => 'Spesifikasi Teknis wajib diisi.',
+            'spesifikasi_teknis.max' => 'Spesifikasi Teknis maksimal 100 karakter.',
         ]);
 
         $masterBarang->update($request->all());
@@ -99,7 +87,7 @@ class MasterBarangController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * 
      */
     public function destroy(MasterBarang $masterBarang)
     {

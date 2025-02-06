@@ -19,18 +19,6 @@ class DepresiasiController extends Controller
         return view('admin.depresiasi.index', compact('depresiasis'));
     }
 
-    public function userIndex(Request $request)
-    {
-        $search = $request->input('search');
-        if ($search) {
-            $data = Depresiasi::where('lama_depresiasi', 'like', "%{$search}%")->get();
-        } else {
-            $data = Depresiasi::all();
-        }
-        
-        return view('user.depresiasi.index', compact('data'));
-    }
-
     public function create()
     {
         return view('admin.depresiasi.create');
@@ -41,6 +29,12 @@ class DepresiasiController extends Controller
         $request->validate([
             'lama_depresiasi' => 'required|integer|min:1',
             'keterangan' => 'nullable|string|max:50',
+        ], messages: [
+            'lama_depresiasi.required' => 'Lama Depresiasi harus diisi.',
+            'lama_depresiasi.integer' => 'Lama Depresiasi harus berupa angka.',
+            'lama_depresiasi.min' => 'Lama Depresiasi minimal 1.',
+            'keterangan.string' => 'Keterangan harus berupa string.',
+            'keterangan.max' => 'Keterangan maksimal 50 karakter.',
         ]);
 
         Depresiasi::create($request->all());
@@ -58,6 +52,12 @@ class DepresiasiController extends Controller
         $request->validate([
             'lama_depresiasi' => 'required|integer|min:1',
             'keterangan' => 'nullable|string|max:50',
+        ], messages: [
+            'lama_depresiasi.required' => 'Lama Depresiasi harus diisi.',
+            'lama_depresiasi.integer' => 'Lama Depresiasi harus berupa angka.',
+            'lama_depresiasi.min' => 'Lama Depresiasi minimal 1.',
+            'keterangan.string' => 'Keterangan harus berupa string.',
+            'keterangan.max' => 'Keterangan maksimal 50 karakter.',
         ]);
 
         $depresiasi->update($request->all());

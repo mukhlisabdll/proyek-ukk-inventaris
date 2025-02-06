@@ -22,18 +22,30 @@
                 <option value="{{ $item->id_pengadaan }}">{{ $item->kode_pengadaan }}</option>
                 @endforeach
             </select>
+            @error('id_pengadaan')
+            <div class="form-text text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="tgl_opname">Tanggal Opname</label>
             <input type="date" name="tgl_opname" id="tgl_opname" class="form-control">
+            @error('tgl_opname')
+            <div class="form-text text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="kondisi_barang">Kondisi Barang</label>
             <input type="text" name="kondisi_barang" id="kondisi_barang" class="form-control">
+            @error('kondisi_barang')
+            <div class="form-text text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="keterangan">Keterangan</label>
             <textarea name="keterangan" id="keterangan" class="form-control"></textarea>
+            @error('keterangan')
+            <div class="form-text text-danger">{{ $message }}</div>
+            @enderror
         </div>
         <button type="submit" class="btn btn-primary">Tambah</button>
     </form>

@@ -146,18 +146,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/user/dashboard', function () {
         return view('user.dashboard');
     })->name('user.dashboard');
-    
-    // Routes untuk master barang (user access)
-    Route::get('user/master-barang', [MasterBarangController::class, 'userIndex'])->name('user.master-barang.index');
-    // Routes untuk kategori asset (user access)
-    Route::get('user/kategori-asset', [KategoriAssetController::class, 'userIndex'])->name('user.kategori-asset.index');
-    // Routes untuk sub kategori asset (user access)
-    Route::get('user/sub-kategori-asset', [SubKategoriAssetController::class, 'userIndex'])->name('user.sub-kategori-asset.index');
-    // Routes untuk merk (user access)
-    Route::get('user/merk', [MerkController::class, 'userIndex'])->name('user.merk.index');
-    Route::get('user/satuan', [SatuanController::class, 'userIndex'])->name('user.satuan.index');
-    Route::get('user/distributor', [DistributorController::class, 'userIndex'])->name('user.distributor.index');
-    Route::get('user/lokasi', [LokasiController::class, 'userIndex'])->name('user.lokasi.index');
 
     // Routes untuk pengadaan (user access)
     Route::get('user/pengadaan', [PengadaanController::class, 'userIndex'])->name('user.pengadaan.index');
@@ -166,9 +154,8 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('user/pengadaan/{pengadaan}/edit', [PengadaanController::class, 'userEdit'])->name('user.pengadaan.edit');
     Route::put('user/pengadaan/{pengadaan}', [PengadaanController::class, 'userUpdate'])->name('user.pengadaan.update');
     Route::delete('user/pengadaan/{pengadaan}', [PengadaanController::class, 'userDestroy'])->name('user.pengadaan.destroy');
+    Route::get('user/pengadaan/{id}/detail-depresiasi', [PengadaanController::class, 'userShowDepresiasi'])->name('user.pengadaan.detail_depresiasi');
 
-    // Routes untuk mutasi lokasi (user access)
-    Route::get('user/mutasi-lokasi', [MutasiLokasiController::class, 'userIndex'])->name('user.mutasi-lokasi.index');
 
     // Routes untuk opname (user access)
     Route::get('user/opname', [OpnameController::class, 'userIndex'])->name('user.opname.index');
@@ -177,9 +164,11 @@ Route::middleware(['auth', 'role:user'])->group(function () {
 
     // Routes untuk hitung depresiasi (user access)
     Route::get('user/hitung-depresiasi', [HitungDepresiasiController::class, 'userIndex'])->name('user.hitung-depresiasi.index');
-
-    // Routes untuk depresiasi (user access)
-    Route::get('user/depresiasi', [DepresiasiController::class, 'userIndex'])->name('user.depresiasi.index');
+    Route::get('user/hitung-depresiasi/create', [HitungDepresiasiController::class, 'userCreate'])->name('user.hitung-depresiasi.create');
+    Route::post('user/hitung-depresiasi', [HitungDepresiasiController::class, 'userStore'])->name('user.hitung-depresiasi.store');
+    Route::get('user/hitung-depresiasi/{hitungDepresiasi}', [HitungDepresiasiController::class, 'userShow'])->name('user.hitung-depresiasi.show');
+    Route::get('user/hitung-depresiasi/{hitungDepresiasi}/edit', [HitungDepresiasiController::class, 'userEdit'])->name('user.hitung-depresiasi.edit');
+    Route::put('user/hitung-depresiasi/{hitungDepresiasi}', [HitungDepresiasiController::class, 'userUpdate'])->name('user.hitung-depresiasi.update');
 });
 
 require __DIR__.'/auth.php';

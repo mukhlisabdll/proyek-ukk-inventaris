@@ -19,12 +19,18 @@
         <div class="mb-3">
             <label for="kode_kategori_asset" class="form-label">Kode Kategori Asset</label>
             <input type="text" class="form-control" id="kode_kategori_asset" name="kode_kategori_asset" value="{{ $data->kode_kategori_asset }}" required>
+            @error('kode_kategori_asset')
+            <div class="form-text text-danger">{{$message}}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="kategori_asset" class="form-label">Kategori Asset</label>
             <input type="text" class="form-control" id="kategori_asset" name="kategori_asset" value="{{ $data->kategori_asset }}" required>
+            @error('kategori_asset')
+            <div class="form-text text-danger">{{$message}}</div>
+            @enderror
         </div>
-        <button type="submit" class="btn btn-primary">Perbarui</button>
+        <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>
 @endsection

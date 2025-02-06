@@ -16,7 +16,7 @@
 
     <form action="{{ route('depresiasi.index') }}" method="GET" class="mb-3">
         <div class="input-group">
-            <input type="text" name="search" class="form-control" placeholder="Cari Depresiasi" value="{{ request('search') }}">
+            <input type="text" name="search" class="form-control" placeholder="Cari Depresiasi...." value="{{ request('search') }}">
             <div class="input-group-append">
                 <button class="btn btn-outline-secondary" type="submit">Cari</button>
             </div>
@@ -41,7 +41,7 @@
             @foreach ($depresiasis as $key => $depresiasi)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{ $depresiasi->lama_depresiasi }} tahun</td>
+                    <td>{{ $depresiasi->lama_depresiasi }} bulan</td>
                     <td>{{ $depresiasi->keterangan ?? '-' }}</td>
                     <td>
                         <a href="{{ route('depresiasi.edit', $depresiasi->id_depresiasi) }}" class="btn btn-warning btn-sm">Edit</a>

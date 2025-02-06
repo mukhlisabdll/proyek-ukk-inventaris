@@ -25,23 +25,6 @@ class KategoriAssetController extends Controller
     }
 
     /**
-     * Tampilkan semua data kategori asset untuk user.
-     */
-    public function userIndex(Request $request)
-    {
-        $search = $request->input('search');
-        if ($search) {
-            $data = KategoriAsset::where('kode_kategori_asset', 'like', "%{$search}%")
-            ->orWhere('kategori_asset', 'like', "%{$search}%")
-            ->get();
-        } else {
-            $data = KategoriAsset::all();
-        }
-
-        return view('user.kategori-asset.index', compact('data'));
-    }
-
-    /**
      * Tampilkan form tambah kategori asset.
      */
     public function create()
@@ -55,8 +38,14 @@ class KategoriAssetController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'kode_kategori_asset' => 'required|max:20',
+            'kode_kategori_asset' => 'required|max:20|unique:tbl_kategori_asset,kode_kategori_asset',
             'kategori_asset' => 'required|max:25',
+        ], messages: [
+            'kode_kategori_asset.required' => 'Kode Kategori Asset wajib diisi!',
+            'kode_kategori_asset.max' => 'Kode Kategori Asset max 20 karakter',
+            'kode_kategori_asset.unique' => 'Kode Kategori Asset sudah digunakan!',
+            'kategori_asset.required' => 'Nama Kategori Asset wajib diisi!',
+            'kategori_asset.max' => 'Nama Kategori Asset tidak boleh lebih dari 25 karakter!',
         ]);
 
         KategoriAsset::create($request->all());
@@ -79,8 +68,14 @@ class KategoriAssetController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'kode_kategori_asset' => 'required|max:20',
+            'kode_kategori_asset' => 'required|max:20|unique:tbl_kategori_asset,kode_kategori_asset,' . $id . ',id_kategori_asset',
             'kategori_asset' => 'required|max:25',
+        ], messages: [
+            'kode_kategori_asset.required' => 'Kode Kategori Asset wajib diisi!',
+            'kode_kategori_asset.max' => 'Kode Kategori Asset tidak boleh lebih dari 20 karakter!',
+            'kode_kategori_asset.unique' => 'Kode Kategori Asset sudah digunakan!',
+            'kategori_asset.required' => 'Nama Kategori Asset wajib diisi!',
+            'kategori_asset.max' => 'Nama Kategori Asset tidak boleh lebih dari 25 karakter!',
         ]);
 
         $data = KategoriAsset::findOrFail($id);

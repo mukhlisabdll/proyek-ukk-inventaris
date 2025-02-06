@@ -23,6 +23,9 @@
                     <option value="{{ $item->id_lokasi }}">{{ $item->nama_lokasi }}</option>
                 @endforeach
             </select>
+            @error('id_lokasi')
+                <div class="text-danger">{{$message}}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="id_pengadaan" class="form-label">Pengadaan</label>
@@ -32,14 +35,23 @@
                     <option value="{{ $item->id_pengadaan }}">{{ $item->kode_pengadaan }}</option>
                 @endforeach
             </select>
+            @error('id_pengadaan')
+                <div class="text-danger">{{$message}}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="flag_lokasi" class="form-label">Flag Lokasi</label>
             <input type="text" name="flag_lokasi" id="flag_lokasi" class="form-control">
+            @error('flag_lokasi')
+                <div class="text-danger">{{$message}}</div>
+            @enderror
         </div>
         <div class="mb-3">
             <label for="flag_pindah" class="form-label">Flag Pindah</label>
             <input type="text" name="flag_pindah" id="flag_pindah" class="form-control">
+            @error('flag_pindah')
+                <div class="text-danger">{{$message}}</div>
+            @enderror
         </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>

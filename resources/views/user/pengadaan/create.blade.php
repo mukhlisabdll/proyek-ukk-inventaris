@@ -85,10 +85,6 @@
             <input type="text" class="form-control" id="kode_pengadaan" name="kode_pengadaan" value="{{ old('kode_pengadaan') }}" required>
         </div>
         <div class="mb-3">
-            <label for="no_invoice" class="form-label">No Invoice</label>
-            <input type="text" class="form-control" id="no_invoice" name="no_invoice" value="{{ old('no_invoice') }}">
-        </div>
-        <div class="mb-3">
             <label for="no_seri_barang" class="form-label">No Seri Barang</label>
             <input type="text" class="form-control" id="no_seri_barang" name="no_seri_barang" value="{{ old('no_seri_barang') }}" required>
         </div>
@@ -105,13 +101,9 @@
             <input type="number" class="form-control" id="harga_barang" name="harga_barang" value="{{ old('harga_barang') }}" required>
         </div>
         <div class="mb-3">
-            <label for="depresiasi_barang" class="form-label">Depresiasi Barang</label>
-            <input type="number" class="form-control" id="depresiasi_barang" name="depresiasi_barang" value="{{ old('depresiasi_barang') }}" required>
-        </div>
-        {{-- <div class="mb-3">
             <label for="nilai_barang" class="form-label">Nilai Barang</label>
             <input type="number" class="form-control" id="nilai_barang" name="nilai_barang" value="{{ old('nilai_barang') }}" required>
-        </div> --}}
+        </div>
         <div class="mb-3">
             <label for="jumlah_barang" class="form-label">Jumlah Barang</label>
             <input type="number" class="form-control" id="jumlah_barang" name="jumlah_barang" value="{{ old('jumlah_barang') }}" required>
@@ -127,8 +119,74 @@
             <label for="keterangan" class="form-label">Keterangan</label>
             <input type="text" class="form-control" id="keterangan" name="keterangan" value="{{ old('keterangan') }}">
         </div>
+        <div class="mb-3">
+            <label class="form-label">Invoice</label>
+            <div id="invoice-container">
+                <div class="invoice-item mb-3">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="no_invoice" class="form-label">No Invoice</label>
+                            <input type="text" class="form-control" name="invoices[0][no_invoice]" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="jumlah_barang_invoice" class="form-label">Jumlah Barang</label>
+                            <input type="number" class="form-control" name="invoices[0][jumlah_barang]" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="tgl_invoice" class="form-label">Tanggal Invoice</label>
+                            <input type="date" class="form-control" name="invoices[0][tgl_invoice]" required>
+                        </div>
+                        <div class="col-md-1 d-flex align-items-end">
+                            <button type="button" class="btn btn-danger btn-sm hapus-invoice">Hapus</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-secondary" id="tambah-invoice">Tambah Invoice</button>
+        </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
         <a href="{{ route('user.pengadaan.index') }}" class="btn btn-secondary">Batal</a>
     </form>
 </div>
+
+@section('scripts')
+<script>
+    document.getElementById('tambah-invoice').addEventListener('click', function () {
+        const container = document.getElementById('invoice-container');
+        const index = container.children.length;
+        const newInvoice = `
+            <div class="invoice-item mb-3">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label for="no_invoice" class="form-label">No Invoice</label>
+                        <input type="text" class="form-control" name="invoices[${index}][no_invoice]" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="jumlah_barang_invoice" class="form-label">Jumlah Barang</label>
+                        <input type="number" class="form-control" name="invoices[${index}][jumlah_barang]" required>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="tgl_invoice" class="form-label">Tanggal Invoice</label>
+                        <input type="date" class="form-control" name="invoices[${index}][tgl_invoice]" required>
+                    </div>
+                    <div class="col-md-1 d-flex align-items-end">
+                        <button type="button" class="btn btn-danger btn-sm hapus-invoice">Hapus</button>
+                    </div>
+                </div>
+            </div>
+        `;
+        container.insertAdjacentHTML('beforeend', newInvoice);
+    });
+
+    // Fungsi untuk menghapus form invoice
+    document.addEventListener('click', function (e) {
+        if (e.target && e.target.classList.contains('hapus-invoice')) {
+            const invoiceItem = e.target.closest('.invoice-item');
+            if (invoiceItem) {
+                invoiceItem.remove();
+            }
+        }
+    });
+</script>
+@endsection
 @endsection

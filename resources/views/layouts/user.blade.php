@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
     <!-- Custom CSS -->
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
     <style>
@@ -82,28 +83,12 @@
                             <a class="nav-link {{ request()->routeIs('user.dashboard') ? 'active' : '' }}" href="{{ route('user.dashboard') }}"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle {{ request()->routeIs('user.master-barang.index') || request()->routeIs('user.kategori-asset.index') || request()->routeIs('user.sub-kategori-asset.index') || request()->routeIs('user.merk.index') || request()->routeIs('user.satuan.index') || request()->routeIs('user.distributor.index') || request()->routeIs('user.lokasi.index') ? 'active' : '' }}" href="#" id="masterDataDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="fas fa-database"></i> Master Data
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="masterDataDropdown">
-                                <li><a class="dropdown-item {{ request()->routeIs('user.master-barang.index') ? 'fw-bold' : '' }}" href="{{ route('user.master-barang.index') }}"><i class="fas fa-box"></i> Barang</a></li>
-                                <li><a class="dropdown-item {{ request()->routeIs('user.kategori-asset.index') ? 'fw-bold' : '' }}" href="{{ route('user.kategori-asset.index') }}"><i class="fas fa-tags"></i> Kategori Aset</a></li>
-                                <li><a class="dropdown-item {{ request()->routeIs('user.sub-kategori-asset.index') ? 'fw-bold' : '' }}" href="{{ route('user.sub-kategori-asset.index') }}"><i class="fas fa-tag"></i> Sub-Kategori Aset</a></li>
-                                <li><a class="dropdown-item {{ request()->routeIs('user.merk.index') ? 'fw-bold' : '' }}" href="{{ route('user.merk.index') }}"><i class="fas fa-industry"></i> Merek</a></li>
-                                <li><a class="dropdown-item {{ request()->routeIs('user.satuan.index') ? 'fw-bold' : '' }}" href="{{ route('user.satuan.index') }}"><i class="fas fa-balance-scale"></i> Satuan</a></li>
-                                <li><a class="dropdown-item {{ request()->routeIs('user.distributor.index') ? 'fw-bold' : '' }}" href="{{ route('user.distributor.index') }}"><i class="fas fa-truck"></i> Distributor</a></li>
-                                <li><a class="dropdown-item {{ request()->routeIs('user.lokasi.index') ? 'fw-bold' : '' }}" href="{{ route('user.lokasi.index') }}"><i class="fas fa-map-marker-alt"></i> Lokasi</a></li>
-                            </ul>
-                        </li>
-                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {{ request()->routeIs('user.pengadaan.index') || request()->routeIs('user.mutasi-lokasi.index') || request()->routeIs('user.opname.index') || request()->routeIs('user.depresiasi.index') || request()->routeIs('user.hitung-depresiasi.index') ? 'active' : '' }}" href="#" id="transaksiDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 <i class="fas fa-exchange-alt"></i> Transaksi
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="transaksiDropdown">
                                 <li><a class="dropdown-item {{ request()->routeIs('user.pengadaan.index') ? 'fw-bold' : '' }}" href="{{ route('user.pengadaan.index') }}"><i class="fas fa-shopping-cart"></i> Pengadaan</a></li>
-                                <li><a class="dropdown-item {{ request()->routeIs('user.mutasi-lokasi.index') ? 'fw-bold' : '' }}" href="{{ route('user.mutasi-lokasi.index') }}"><i class="fas fa-random"></i> Mutasi Lokasi</a></li>
                                 <li><a class="dropdown-item {{ request()->routeIs('user.opname.index') ? 'fw-bold' : '' }}" href="{{ route('user.opname.index') }}"><i class="fas fa-clipboard-check"></i> Opname</a></li>
-                                <li><a class="dropdown-item {{ request()->routeIs('user.depresiasi.index') ? 'fw-bold' : '' }}" href="{{ route('user.depresiasi.index') }}"><i class="fas fa-calculator"></i> Depresiasi</a></li>
                                 <li><a class="dropdown-item {{ request()->routeIs('user.hitung-depresiasi.index') ? 'fw-bold' : '' }}" href="{{ route('user.hitung-depresiasi.index') }}"><i class="fas fa-percentage"></i> Hitung Depresiasi</a></li>
                             </ul>
                         </li>
@@ -149,5 +134,9 @@
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Scripts section -->
+    @yield('scripts')
+
 </body>
 </html>
