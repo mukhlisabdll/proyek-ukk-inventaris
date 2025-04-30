@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Opname;
 use App\Models\Pengadaan;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class OpnameController extends Controller
 {
@@ -34,7 +35,8 @@ class OpnameController extends Controller
         $request->validate([
             'id_pengadaan' => 'required|exists:tbl_pengadaan,id_pengadaan',
             'tgl_opname' => 'required|date',
-            'kondisi_barang' => 'required|string|max:25',
+            'kondisi_barang' => ['required', 'string', 'max:25', rule::in(['Baik', 'Rusak', 'Hilang'])],
+            'jumlah_barang' => 'required|integer|min:0',
             'keterangan' => 'nullable|string|max:100',
         ], messages: [
             'id_pengadaan.required' => 'Pengadaan harus dipilih',
@@ -44,9 +46,18 @@ class OpnameController extends Controller
             'kondisi_barang.required' => 'Kondisi Barang harus diisi.',
             'kondisi_barang.string' => 'Kondisi Barang harus berupa string.',
             'kondisi_barang.max' => 'Kondisi Barang maksimal 25 karakter.',
+            'kondisi_barang.in' => 'Kondisi Barang harus salah satu dari Baik.',
+            'jumlah_barang.required' => 'Jumlah Barang harus diisi.',
+            'jumlah_barang.integer' => 'Jumlah Barang harus berupa angka.',
+            'jumlah_barang.min' => 'Jumlah Barang harus lebih besar atau sama dengan 0.',
             'keterangan.string' => 'Keterangan harus berupa string.',
             'keterangan.max' => 'Keterangan maksimal 100 karakter.',
         ]);
+
+        $pengadaan = Pengadaan::find($request->id_pengadaan);
+        if ($request->kondisi_barang !== 'Baik' && $request->jumlah_barang > $pengadaan->jumlah_barang) {
+            return back()->withErrors(['jumlah_barang' => 'Jumlah barang tidak boleh melebihi jumlah barang pengadaan.']);
+        }
 
         Opname::create($request->all());
         return redirect()->route('opname.index')->with('success', 'Data Opname berhasil ditambahkan.');
@@ -63,7 +74,8 @@ class OpnameController extends Controller
         $request->validate([
             'id_pengadaan' => 'required|exists:tbl_pengadaan,id_pengadaan',
             'tgl_opname' => 'required|date',
-            'kondisi_barang' => 'required|string|max:25',
+            'kondisi_barang' => ['required', 'string', 'max:25', rule::in(['Baik', 'Rusak', 'Hilang'])],
+            'jumlah_barang' => 'required|integer|min:0',
             'keterangan' => 'nullable|string|max:100',
         ], messages: [
             'id_pengadaan.required' => 'Pengadaan harus dipilih',
@@ -73,11 +85,21 @@ class OpnameController extends Controller
             'kondisi_barang.required' => 'Kondisi Barang harus diisi.',
             'kondisi_barang.string' => 'Kondisi Barang harus berupa string.',
             'kondisi_barang.max' => 'Kondisi Barang maksimal 25 karakter.',
+            'kondisi_barang.in' => 'Kondisi Barang harus salah satu dari Baik.',
+            'jumlah_barang.required' => 'Jumlah Barang harus diisi.',
+            'jumlah_barang.integer' => 'Jumlah Barang harus berupa angka.',
+            'jumlah_barang.min' => 'Jumlah Barang harus lebih besar atau sama dengan 0.',
             'keterangan.string' => 'Keterangan harus berupa string.',
             'keterangan.max' => 'Keterangan maksimal 100 karakter.',
         ]);
 
+        $pengadaan = Pengadaan::find($request->id_pengadaan);
+        if ($request->kondisi_barang !== 'Baik' && $request->jumlah_barang > $pengadaan->jumlah_barang) {
+            return back()->withErrors(['jumlah_barang' => 'Jumlah barang tidak boleh melebihi jumlah barang pengadaan.']);
+        }
+
         $opname->update($request->all());
+
         return redirect()->route('opname.index')->with('success', 'Data Opname berhasil diperbarui.');
     }
 

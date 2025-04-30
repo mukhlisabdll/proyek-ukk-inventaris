@@ -109,10 +109,10 @@
             <input type="number" class="form-control" id="jumlah_barang" name="jumlah_barang" value="{{ old('jumlah_barang') }}" required>
         </div>
         <div class="mb-3">
-            <label for="fb" class="form-label">Flag Barang</label>
+            <label for="fb" class="form-label">Status Persetujuan</label>
             <select class="form-control" id="fb" name="fb" required>
-                <option value="0" {{ old('fb') == '0' ? 'selected' : '' }}>Tidak Aktif</option>
-                <option value="1" {{ old('fb') == '1' ? 'selected' : '' }}>Aktif</option>
+                <option value="0" {{ old('fb') == '0' ? 'selected' : '' }}>Belum Disetujui</option>
+                <option value="1" {{ old('fb') == '1' ? 'selected' : '' }}>Disetujui</option>
             </select>
         </div>
         <div class="mb-3">

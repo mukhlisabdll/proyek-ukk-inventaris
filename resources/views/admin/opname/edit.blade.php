@@ -38,8 +38,19 @@
         </div>
         <div class="mb-3">
             <label for="kondisi_barang" class="form-label">Kondisi Barang</label>
-            <input type="text" name="kondisi_barang" id="kondisi_barang" value="{{ $opname->kondisi_barang }}" class="form-control">
+            <select name="kondisi_barang" id="kondisi_barang" class="form-control">
+                <option value="Baik" {{ $opname->kondisi_barang == 'Baik' ? 'selected' : '' }}>Baik</option>
+                <option value="Rusak" {{ $opname->kondisi_barang == 'Rusak' ? 'selected' : '' }}>Rusak</option>
+                <option value="Hilang" {{ $opname->kondisi_barang == 'Hilang' ? 'selected' : '' }}>Hilang</option>
+            </select>
             @error('kondisi_barang')
+                <div class="form-text text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        <div class="mb-3">
+            <label for="jumlah_barang" class="form-label">Jumlah Barang (Pengadaan: {{ $opname->pengadaan->jumlah_barang }})</label>
+            <input type="number" name="jumlah_barang" id="jumlah_barang" value="{{ $opname->jumlah_barang }}" class="form-control" oninput="updateJumlahPengadaan()">
+            @error('jumlah_barang')
                 <div class="form-text text-danger">{{ $message }}</div>
             @enderror
         </div>
@@ -53,4 +64,19 @@
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </div>
+<script>
+    function updateJumlahPengadaan() {
+        const kondisi = document.getElementById('kondisi_barang').value;
+        const jumlahPengadaan = {{ $opname->pengadaan->jumlah_barang }};
+        const jumlahBarang = document.getElementById('jumlah_barang').value;
+
+        if (kondisi === 'Rusak' || kondisi === 'Hilang') {
+            const sisaBarang = jumlahPengadaan - jumlahBarang;
+            if (sisaBarang < 0) {
+                alert('Jumlah barang tidak boleh melebihi jumlah barang pengadaan.');
+                document.getElementById('jumlah_barang').value = jumlahPengadaan;
+            }
+        }
+    }
+</script>
 @endsection

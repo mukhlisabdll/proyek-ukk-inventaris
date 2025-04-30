@@ -49,7 +49,7 @@
                 <th>Total Harga</th>
                 <th>Nilai Barang</th>
                 <th>Depresiasi Barang</th>
-                <th>Fisik Barang</th>
+                <th>Status Persetujuan</th>
                 <th>Keterangan</th>
                 <th>Aksi</th>
             </tr>
@@ -100,7 +100,7 @@
                             Tidak ada depresiasi
                         @endif
                     </td>
-                    <td>{{ $pengadaan->fb == '1' ? 'Aktif' : 'Tidak Aktif' }}</td>
+                    <td>{{ $pengadaan->fb == '1' ? 'Disetujui' : 'Belum Disetujui' }}</td>
                     <td>{{ $pengadaan->keterangan }}</td>
                     <!-- Di dalam index.blade.php -->
                     <td>

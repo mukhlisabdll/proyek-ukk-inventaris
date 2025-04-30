@@ -18,6 +18,7 @@
         <div class="card-body">
             <h5 class="card-title">Informasi Umum</h5>
             <p><strong>Kode Pengadaan:</strong> {{ $hitungDepresiasi->pengadaan->kode_pengadaan }}</p>
+            <p><strong>Harga Barang</strong> Rp {{ number_format($hitungDepresiasi->pengadaan->harga_barang, 0, ',', '.') }}</p>
             <p><strong>Tanggal Hitung Depresiasi:</strong> {{ $hitungDepresiasi->tgl_hitung_depresiasi }}</p>
             <p><strong>Bulan:</strong> {{ $hitungDepresiasi->bulan }}</p>
             <p><strong>Durasi (bulan):</strong> {{ $hitungDepresiasi->durasi }}</p>

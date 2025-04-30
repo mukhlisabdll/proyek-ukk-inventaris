@@ -91,6 +91,9 @@
                                 <li><a class="dropdown-item {{ request()->routeIs('satuan.index') ? 'fw-bold' : '' }}" href="{{ route('satuan.index') }}"><i class="fas fa-balance-scale"></i> Satuan</a></li>
                                 <li><a class="dropdown-item {{ request()->routeIs('distributor.index') ? 'fw-bold' : '' }}" href="{{ route('distributor.index') }}"><i class="fas fa-truck"></i> Distributor</a></li>
                                 <li><a class="dropdown-item {{ request()->routeIs('lokasi.index') ? 'fw-bold' : '' }}" href="{{ route('lokasi.index') }}"><i class="fas fa-map-marker-alt"></i> Lokasi</a></li>
+                                <!-- tambahkan list penyimpanan -->
+                                <li><a class="dropdown-item {{ request()->routeIs('penyimpanan.index') ? 'fw-bold' : '' }}" href="{{ route('penyimpanan.index') }}"><i class="fas fa-warehouse"></i> Penyimpanan</a></li>
+                                
                             </ul>
                         </li>
                         <li class="nav-item dropdown">

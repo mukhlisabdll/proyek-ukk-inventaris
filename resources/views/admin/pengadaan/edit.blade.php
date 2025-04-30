@@ -123,10 +123,10 @@
             <input type="number" class="form-control" id="nilai_barang" name="nilai_barang" value="{{ $pengadaan->nilai_barang }}" required>
         </div>
         <div class="mb-3">
-            <label for="fb" class="form-label">Fisik Barang</label>
+            <label for="fb" class="form-label">Status Persetujuan</label>
             <select class="form-control" id="fb" name="fb" required>
-                <option value="0" {{ $pengadaan->fb == '0' ? 'selected' : '' }}>Tidak Aktif</option>
-                <option value="1" {{ $pengadaan->fb == '1' ? 'selected' : '' }}>Aktif</option>
+                <option value="0" {{ $pengadaan->fb == '0' ? 'selected' : '' }}>Belum Disetujui</option>
+                <option value="1" {{ $pengadaan->fb == '1' ? 'selected' : '' }}>Disetujui</option>
             </select>
         </div>
         <div class="mb-3">

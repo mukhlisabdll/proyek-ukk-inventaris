@@ -49,7 +49,7 @@
                     <th>Total Harga</th>
                     <th>Nilai Barang</th>
                     <th>Depresiasi Barang</th>
-                    <th>Flag Barang</th>
+                    <th>Status Persetujuan</th>
                     <th>Keterangan</th>
                     <th>Aksi</th>
                 </tr>
@@ -100,7 +100,7 @@
                                 Tidak ada depresiasi
                             @endif
                         </td>
-                        <td>{{ $item->fb == '1' ? 'Aktif' : 'Tidak Aktif' }}</td>
+                        <td>{{ $item->fb == '1' ? 'Disetujui' : 'Belum Disetujui' }}</td>
                         <td>{{ $item->keterangan }}</td>
                         <td>
                             <a href="{{ route('user.pengadaan.detail_depresiasi', $item->id_pengadaan) }}" class="btn btn-info btn-sm">Detail Depresiasi</a>

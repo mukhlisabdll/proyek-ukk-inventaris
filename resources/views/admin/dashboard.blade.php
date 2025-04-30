@@ -139,7 +139,17 @@
                         </div>
                     </div>
                 </div>
-
+                <!-- Penyimpanan -->
+                <div class="col-md-6">
+                    <div class="card shadow-sm">
+                        <div class="card-body text-center">
+                            <h5 class="card-title"><i class="fas fa-file-alt"></i> Penyimpanan</h5>
+                            <p class="card-text">Kelola data penyimpanan.</p>
+                            <a href="{{ route('penyimpanan.index') }}" class="btn" style="background-color: #007bff; color: #fff;">Kelola</a>
+                        </div>
+                    </div>
+                </div>
+                
                 <!-- Akun -->
                 <div class="col-md-6">
                     <div class="card shadow-sm">
@@ -150,6 +160,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 

@@ -16,11 +16,17 @@ class Opname extends Model
         'id_pengadaan',
         'tgl_opname',
         'kondisi_barang',
+        'jumlah_barang',
         'keterangan',
     ];
 
     public function pengadaan()
     {
         return $this->belongsTo(Pengadaan::class, 'id_pengadaan', 'id_pengadaan');
+    }
+
+    public function barang()
+    {
+        return $this->belongsTo(MasterBarang::class, 'id_master_barang', 'id_master_barang');
     }
 }

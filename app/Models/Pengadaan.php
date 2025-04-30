@@ -70,6 +70,11 @@ class Pengadaan extends Model
         return $this->hasMany(Invoice::class, 'id_pengadaan');
     }
 
+    public function opname()
+    {
+        return $this->hasMany(Opname::class, 'id_pengadaan', 'id_pengadaan');
+    }
+
     // Di dalam model Pengadaan
     public function hitungDepresiasiPerBulan()
     {

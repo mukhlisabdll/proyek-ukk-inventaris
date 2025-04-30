@@ -15,6 +15,7 @@ use App\Http\Controllers\DepresiasiController;
 use App\Http\Controllers\MutasiLokasiController;
 use App\Http\Controllers\OpnameController;
 use App\Http\Controllers\HitungDepresiasiController;
+use App\Http\Controllers\PenyimpananController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -140,6 +141,9 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->group(function () {
     Route::resource('hitung-depresiasi', HitungDepresiasiController::class);
 });
+
+// Routes untuk Penyimpanan
+Route::resource('penyimpanan', PenyimpananController::class);
 
 // Routes untuk user
 Route::middleware(['auth', 'role:user'])->group(function () {

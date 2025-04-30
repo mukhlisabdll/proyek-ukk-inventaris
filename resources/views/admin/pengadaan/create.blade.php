@@ -122,10 +122,10 @@
             @enderror
         </div>
         <div class="mb-3">
-            <label for="fb" class="form-label">Fisik Barang</label>
+            <label for="fb" class="form-label">Status Persetujuan</label>
             <select class="form-control" id="fb" name="fb" required>
-                <option value="0" {{ old('fb') == '0' ? 'selected' : '' }}>Tidak Aktif</option>
-                <option value="1" {{ old('fb') == '1' ? 'selected' : '' }}>Aktif</option>
+                <option value="0" {{ old('fb') == '0' ? 'selected' : '' }}>Belum Disetujui</option>
+                <option value="1" {{ old('fb') == '1' ? 'selected' : '' }}>Disetujui</option>
             </select>
             @error('fb')
                 <div class="text-danger">{{ $message }}</div>

@@ -34,7 +34,9 @@
                 <th>No</th>
                 <th>Tanggal Opname</th>
                 <th>Pengadaan</th>
+                <th>Jumlah Barang Pengadaan</th>
                 <th>Kondisi Barang</th>
+                <th>Jumlah Barang</th>
                 <th>Keterangan</th>
                 <th>Aksi</th>
             </tr>
@@ -45,7 +47,9 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $item->tgl_opname }}</td>
                     <td>{{ $item->pengadaan->kode_pengadaan }}</td>
+                    <td>{{ $item->pengadaan->jumlah_barang }}</td>
                     <td>{{ $item->kondisi_barang }}</td>
+                    <td>{{ $item->jumlah_barang }}</td>
                     <td>{{ $item->keterangan }}</td>
                     <td>
                         <a href="{{ route('opname.edit', $item->id_opname) }}" class="btn btn-warning btn-sm">Edit</a>
